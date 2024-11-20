@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/HomePage/center_choose_box.dart';
 import 'package:flutter_train_app/SeatPage/seat_page.dart';
@@ -41,6 +42,16 @@ class _HomePageState extends State<HomePage> {
                   backgroundColor: Colors.purple,
                   foregroundColor: Colors.white),
               onPressed: () async {
+                if (depatureStation == null) {
+                  await goListPage(context, true);
+                  //UX적 부분 출발역이 null이면 도착역 선택하지 않고 처음으로 돌아감
+                  if (depatureStation == null) {
+                    return;
+                  }
+                }
+                if (arrivalStation == null) {
+                  await goListPage(context, false);
+                }
                 if (depatureStation != null && arrivalStation != null)
                   await Navigator.push(context,
                       MaterialPageRoute(builder: (context) {
@@ -62,5 +73,52 @@ class _HomePageState extends State<HomePage> {
         ]),
       ),
     );
+  }
+
+  Future<dynamic> goListPage(BuildContext context, bool isDepature) {
+    return showCupertinoDialog(
+        context: context,
+        builder: (context) => CupertinoAlertDialog(
+              title: Text('알림!'),
+              content: Text(isDepature ? '출발역을 선택해주세요.' : '도착역을 선택해주세요.'),
+              actions: [
+                CupertinoDialogAction(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('확인'),
+                ),
+                CupertinoDialogAction(
+                  onPressed: () async {
+                    final result = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return StationListPage(
+                              isDepature ? '출발역' : '도착역',
+                              isDepature == true
+                                  ? arrivalStation
+                                  : depatureStation);
+                        },
+                      ),
+                    );
+                    if (result != null) {
+                      if (isDepature) {
+                        onSelected(result, arrivalStation);
+                      } else {
+                        onSelected(depatureStation, result);
+                      }
+                    }
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    isDepature ? '출발역 선택' : '도착역 선택',
+                    style: TextStyle(
+                      color: Colors.blue,
+                    ),
+                  ),
+                )
+              ],
+            ));
   }
 }

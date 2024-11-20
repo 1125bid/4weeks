@@ -37,21 +37,50 @@ class _SeatPageState extends State<SeatPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  '${widget.depatureStation}',
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.purple),
+                GestureDetector(
+                  // onTap: () async {
+                  //   final depature = await Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) {
+                  //         return StationListPage('출발역', arrivalStation);
+                  //       },
+                  //     ),
+                  //   );
+                  //   if (depature != null) {
+                  //     onSelected(depature, arrivalStaiton);
+                  //   }
+                  // },
+                  child: Text(
+                    '${widget.depatureStation}',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.purple),
+                  ),
                 ),
                 Icon(Icons.arrow_circle_right_outlined),
-                //method로 정리예정
-                Text(
-                  '${widget.arrivalStaiton}',
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.purple),
+                GestureDetector(
+                  // onTap: () async {
+                  //   final arrival = await Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) {
+                  //         return StationListPage('도착역', depatureStation);
+                  //       },
+                  //     ),
+                  //   );
+                  //   if (arrival != null) {
+                  //     onSelected(depatureStation, arrival);
+                  //   }
+                  // },
+                  child: Text(
+                    '${widget.arrivalStaiton}',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.purple),
+                  ),
                 ),
               ],
             ),
@@ -135,6 +164,24 @@ class _SeatPageState extends State<SeatPage> {
                                         color: Colors.blue,
                                       ),
                                     ),
+                                  )
+                                ],
+                              ));
+                    }
+
+                    /// 좌석 미선택시 알림
+                    else {
+                      showCupertinoDialog(
+                          context: context,
+                          builder: (context) => CupertinoAlertDialog(
+                                title: Text('알림!'),
+                                content: Text('좌석을 선택해주세요.'),
+                                actions: [
+                                  CupertinoDialogAction(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('확인'),
                                   )
                                 ],
                               ));

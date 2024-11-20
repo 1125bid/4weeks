@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-///도착역&출발역을 선택하는 페이지
-//TODO listview에서 선택하면 이전페이지로 이동
-//TODO listview에서 선택하면 출발역 또는 출발역 정보를 갖고 홈페이지로 이동
-//TODO 도착페이지와 출발페이지의 appbar 이름 변경
-
 class StationListPage extends StatelessWidget {
   StationListPage(this.station, this.ignoreStation);
   String station;
