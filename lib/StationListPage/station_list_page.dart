@@ -41,6 +41,8 @@ class StationListPage extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.pop(context, '${stationlist[index]}');
+                  String station = stationlist[index];
+                  stationlist.remove(station);
                 },
                 child: Text(
                   '${stationlist[index]}',

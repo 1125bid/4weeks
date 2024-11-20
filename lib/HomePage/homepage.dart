@@ -3,11 +3,6 @@ import 'package:flutter_train_app/HomePage/center_choose_box.dart';
 import 'package:flutter_train_app/SeatPage/seat_page.dart';
 import 'package:flutter_train_app/StationListPage/station_list_page.dart';
 
-///출발역 ontap (){StationListPage}
-///도착역 ontap (){StationListPage}
-///출발역&도착역 있는 상태로 ontap (){navigator.SeatPage}
-/// String 으로 StationListPage 에서 받아온 후 if 문으로 보내기
-/// SeatPage, StationListPage만들기
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -36,6 +31,8 @@ class _HomePageState extends State<HomePage> {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           CenterChooseBox(depatureStation, arrivalStation, onSelected),
           SizedBox(height: 20),
+
+          ///좌선 선택버튼
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.purple, foregroundColor: Colors.white),

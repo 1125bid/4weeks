@@ -3,8 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/StationListPage/station_list_page.dart';
 
-///TODO 출발역 list에서 역 선택시 출발역 이름 변경
-///TODO 도착역 list에서 역 선택시 도착역 이름 변경
+//홈페이지 출발역&도착역 칸
 class CenterChooseBox extends StatelessWidget {
   CenterChooseBox(this.depatureStation, this.arrivalStation, this.onSelected);
   String? depatureStation;
@@ -27,6 +26,7 @@ class CenterChooseBox extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                ///출발역 선택
                 GestureDetector(
                   onTap: () async {
                     final depature = await Navigator.push(
@@ -60,6 +60,8 @@ class CenterChooseBox extends StatelessWidget {
                   ),
                 ),
                 centerContainer(),
+
+                ///도착역 선택
                 GestureDetector(
                   onTap: () async {
                     final arrival = await Navigator.push(

@@ -15,6 +15,7 @@ class SeatPage extends StatefulWidget {
 class _SeatPageState extends State<SeatPage> {
   String? selectedRow;
   int? selectedCol;
+  //선택한 행&열을 변환해주는 함수
   void onSelected(String row, int col) {
     setState(() {
       selectedRow = row;
@@ -22,7 +23,6 @@ class _SeatPageState extends State<SeatPage> {
     });
   }
 
-  // void Function(String rowAlpabet, int colNum) onSelected;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +33,10 @@ class _SeatPageState extends State<SeatPage> {
       body: Container(
         child: Column(
           children: [
+            //출발역→도착역
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                //method로 정리예정
-                //center_choose_box.dart 에서 depatureStation 갖고오기
                 Text(
                   '${widget.depatureStation}',
                   style: TextStyle(
@@ -66,6 +65,8 @@ class _SeatPageState extends State<SeatPage> {
                 seatSelectedOption(Colors.grey, '선택안됨')
               ],
             ),
+
+            ///좌석 listview
             Expanded(
               child: ListView(
                 children: [
@@ -93,6 +94,8 @@ class _SeatPageState extends State<SeatPage> {
                 ],
               ),
             ),
+
+            ///예매하기 버튼
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
@@ -150,6 +153,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  ///좌석 열표시 ABCD
   Row frontRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -163,6 +167,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  ///열표시 container
   Container seatContainer(String text) {
     return Container(
       child: Center(child: Text('$text')),
@@ -172,6 +177,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  ///좌석 container
   Row seatRow(int colNum) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -189,6 +195,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  ///좌석 container
   Widget seat(String rowNum, int colNum) {
     return Container(
       child: GestureDetector(
