@@ -33,25 +33,30 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 20),
 
           ///좌선 선택버튼
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple, foregroundColor: Colors.white),
-            onPressed: () async {
-              if (depatureStation != null && arrivalStation != null)
-                await Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                  return SeatPage(
-                    '$depatureStation',
-                    '$arrivalStation',
-                  );
-                }));
-            },
-            child: Text(
-              '좌석선택',
-              style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
+          Container(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                  foregroundColor: Colors.white),
+              onPressed: () async {
+                if (depatureStation != null && arrivalStation != null)
+                  await Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                    return SeatPage(
+                      '$depatureStation',
+                      '$arrivalStation',
+                    );
+                  }));
+              },
+              child: Text(
+                '좌석선택',
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           )
         ]),
