@@ -39,7 +39,10 @@ class _HomePageState extends State<HomePage> {
             height: 50,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
+                  backgroundColor:
+                      (depatureStation != null && arrivalStation != null)
+                          ? Colors.purple
+                          : Colors.grey[400],
                   foregroundColor: Colors.white),
               onPressed: () async {
                 if (depatureStation == null) {
