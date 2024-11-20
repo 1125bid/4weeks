@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 //TODO 도착페이지와 출발페이지의 appbar 이름 변경
 
 class StationListPage extends StatelessWidget {
-  StationListPage(this.station);
+  StationListPage(this.station, this.ignoreStation);
   String station;
+  String? ignoreStation;
   List<String> stationlist = [
     "수서",
     "동탄",
@@ -23,16 +24,16 @@ class StationListPage extends StatelessWidget {
   ];
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
+    final stations =
+        stationlist.where((station) => station != ignoreStation).toList();
     return Scaffold(
       appBar: AppBar(
         title: Text('$station'),
         centerTitle: true,
       ),
       body: ListView.builder(
-        itemCount: stationlist.length,
+        itemCount: stations.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             height: 50,
@@ -40,12 +41,10 @@ class StationListPage extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pop(context, '${stationlist[index]}');
-                  String station = stationlist[index];
-                  stationlist.remove(station);
+                  Navigator.pop(context, '${stations[index]}');
                 },
                 child: Text(
-                  '${stationlist[index]}',
+                  '${stations[index]}',
                 ),
               ),
             ),

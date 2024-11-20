@@ -33,7 +33,7 @@ class CenterChooseBox extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return StationListPage('출발역');
+                          return StationListPage('출발역', arrivalStation);
                         },
                       ),
                     );
@@ -68,7 +68,7 @@ class CenterChooseBox extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return StationListPage('도착역');
+                          return StationListPage('도착역', depatureStation);
                         },
                       ),
                     );
