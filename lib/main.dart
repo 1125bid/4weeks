@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('123');
     return MaterialApp(
       home: HomePage(),
     );
